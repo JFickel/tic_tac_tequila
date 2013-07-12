@@ -17,3 +17,5 @@ gem 'rake'
 
 gem 'haml'
 gem 'shotgun'
+
+gem 'bcrypt-ruby'
