@@ -12,7 +12,7 @@ end
 get '/games/:id' do
   game = Game.find_by_id(params[:game_id])
   @players = @game.players
-  haml '/games/' + params[:game_id]
+  haml :'games/show'
 end
 
 get '/rounds/new' do
