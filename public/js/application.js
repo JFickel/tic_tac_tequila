@@ -1,7 +1,21 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+  $('form.signup').on('submit', function(e) {
+    e.preventDefault();
+    $.post('/signup', $(this).serialize()).done( function(response) {
+      $('#confirmation').html(response);
+    });
+  });
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+
+  $('form.signin').on('submit', function(e) {
+    e.preventDefault();
+    $.post('/signin', $(this).serialize()).done( function(response) {
+      if (response === 'nope') {
+        $('#confirmation').html('Invalid Username and Password Combination');
+      }
+      else {
+        window.location.replace('/main');
+      }
+    });
+  });
 });
