@@ -22,7 +22,6 @@ class CreateInitialSchema < ActiveRecord::Migration
       t.string :state
       t.string :starter
       t.string :winner
-      t.boolean :winner, :default => false
 
       t.timestamps
     end

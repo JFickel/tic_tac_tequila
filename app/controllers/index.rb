@@ -8,12 +8,20 @@ get '/games/new' do
 end
 
 get '/rounds/new' do
-  params[:game_id]
-  round = Round.new(game_id: params[:game_id], )
+  round = Round.new(game_id: params[:game_id])
+  round.starter = [params[:player1_id], params[:player2_id]].sample
+  player1_round = PlayerRound.create(round_id: round.id, player_id: params[:player1_id]) 
+  player2_round = PlayerRound.create(round_id: round.id, player_id: params[:player2_id]) 
+  round.state = (1..9).each.with_object({}) {|i,obj| obj[i] = nil }
+  if round.save
+    redirect '/games/' + round.id
+  else
+    redirect '/games/' + round.game_id
+  end
 end
 
-get '/games/:id' do # what is the game's status?
-
+get '/rounds/:id' do # what is the game's status?
+  game = gameparams[:id]
 end
 
 put '/rounds/:id' do
