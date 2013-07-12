@@ -21,8 +21,11 @@ get '/rounds/new' do
 end
 
 get '/rounds/:id' do # what is the game's status?
-  game = gameparams[:id]
+  round = Round.find_by_id(params[:id])
+  round.status.to_json
 end
 
 put '/rounds/:id' do
+  round = Round.find_by_id(params[:id])
+  round.update_attributes(params[:state])
 end
