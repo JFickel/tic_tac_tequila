@@ -4,7 +4,15 @@ get '/' do
 end
 
 get '/games/new' do
-  game = Game.new
+  game = Game.new(params[:name])
+  player_game = PlayerGame.
+  redirect '/games/' + game.id
+end
+
+get '/games/:id' do
+  game = Game.find_by_id(params[:game_id])
+  @players = @game.players
+  haml '/games/' + params[:game_id]
 end
 
 get '/rounds/new' do
@@ -20,9 +28,14 @@ get '/rounds/new' do
   end
 end
 
-get '/rounds/:id' do # what is the game's status?
+get '/rounds/:id/status' do # what is the game's status?
   round = Round.find_by_id(params[:id])
   round.status.to_json
+end
+
+get '/rounds/:id' do
+  @round = Round.find_by_id(params[:id])
+  haml :'rounds/show'
 end
 
 put '/rounds/:id' do

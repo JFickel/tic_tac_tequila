@@ -3,6 +3,8 @@ class Player < ActiveRecord::Base
   
   has_many :rounds
   has_many :games, :through => :rounds 
+  has_many :player_games
+  has_many :players, through: :player_games
 
   def self.authenticate(email, password)
     current_player = self.find_by_email(email)

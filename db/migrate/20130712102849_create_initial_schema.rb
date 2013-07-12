@@ -12,7 +12,6 @@ class CreateInitialSchema < ActiveRecord::Migration
     create_table :games do |t|
       t.boolean :finished, :default => false
       t.string :name
-      t.integer :time_elapsed
       
       t.timestamps
     end
@@ -29,6 +28,11 @@ class CreateInitialSchema < ActiveRecord::Migration
     create_table :player_rounds do |t|
       t.belongs_to :player
       t.belongs_to :round
+    end
+
+    create_table :player_games do |t|
+      t.belongs_to :player
+      t.belongs_to :game
     end
   end
 end
