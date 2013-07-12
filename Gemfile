@@ -19,3 +19,4 @@ gem 'haml'
 gem 'shotgun'
 
 gem 'bcrypt-ruby'
+

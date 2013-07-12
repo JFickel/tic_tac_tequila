@@ -1,0 +1,5 @@
+-if @new_user.valid?
+  %p#confirmation= "Thank you #{@new_user.name}!  You now have an account!"
+-else
+  -@new_user.errors.full_messages.each do |message|
+    %p= message
