@@ -11,15 +11,14 @@ class CreateInitialSchema < ActiveRecord::Migration
 
     create_table :games do |t|
       t.boolean :finished, :default => false
-      t.string :url
+      t.string :name
       t.integer :time_elapsed
       
       t.timestamps
     end
 
     create_table :rounds do |t|
-      t.references :player
-      t.references :game
+      t.belongs_to :game
       t.string :state
       t.string :starter
       t.string :winner
@@ -27,5 +26,14 @@ class CreateInitialSchema < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    create_table :player_rounds do |t|
+      t.belongs_to :player
+      t.belongs_to :round
+    end
   end
 end
+
+
+
+
