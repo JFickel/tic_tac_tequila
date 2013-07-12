@@ -20,6 +20,9 @@ class CreateInitialSchema < ActiveRecord::Migration
     create_table :rounds do |t|
       t.references :player
       t.references :game
+      t.string :state
+      t.string :starter
+      t.string :winner
       t.boolean :winner, :default => false
 
       t.timestamps
